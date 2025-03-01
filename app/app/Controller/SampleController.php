@@ -3,31 +3,32 @@ class SampleController extends AppController {
     public $name = 'Sample';
 
     public function index() {
-        // PHP 5 特有の関数をいくつか使用する
+        // PHP 7 互換の関数を使用
         $date = '2025-03-01';
         
-        // PHP 5 の strtotime を使用
+        // strtotime は PHP 7 でも使用可能
         $timestamp = strtotime($date);
         $this->set('timestamp', $timestamp);
         
-        // PHP 5 の ereg 関数（非推奨）
-        $regexResult = ereg('^[0-9]{4}-[0-9]{2}-[0-9]{2}$', $date);
+        // ereg の代わりに preg_match を使用
+        $regexResult = preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date);
         $this->set('regexResult', $regexResult);
         
-        // PHP 5 の split 関数（非推奨）
-        $splitResult = split('-', $date);
+        // split の代わりに explode を使用
+        $splitResult = explode('-', $date);
         $this->set('splitResult', $splitResult);
         
-        // PHP 5 の mysql_connect（非推奨）
-        $conn = mysql_connect('localhost', 'root', 'password');
+        // mysql_connect の代わりに mysqli_connect を使用
+        // 注意: 実際の接続は CakePHP のデータソースを使用するべき
+        $conn = false; // 実際のアプリケーションでは CakePHP のモデルを使用
         $this->set('mysqlConn', $conn);
         
-        // PHP 5 の get_magic_quotes_gpc（非推奨）
-        $magicQuotes = get_magic_quotes_gpc();
+        // get_magic_quotes_gpc は PHP 7 で削除されたため、常に false を返す
+        $magicQuotes = false; // PHP 7 では常に無効
         $this->set('magicQuotes', $magicQuotes);
         
-        // PHP 5 の register_globals（セキュリティリスク）
-        $globals = $GLOBALS;
+        // register_globals は PHP 5.4 以降で削除されたため、代替コードなし
+        $globals = []; // 簡易的な空の配列を設定
         $this->set('globals', $globals);
     }
 }

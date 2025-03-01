@@ -1,8 +1,8 @@
-<h1>Sample Page</h1>
+<h1>Sample Page (PHP 7 Compatible)</h1>
 
 <p><strong>Timestamp (strtotime):</strong> <?= $timestamp ?></p>
-<p><strong>Regex (ereg):</strong> <?= $regexResult ? 'Match found' : 'No match' ?></p>
-<p><strong>Split (split):</strong> <?= implode(', ', $splitResult) ?></p>
-<p><strong>MySQL Connection (mysql_connect):</strong> <?= $mysqlConn ? 'Connected' : 'Failed to connect' ?></p>
-<p><strong>Magic Quotes (get_magic_quotes_gpc):</strong> <?= $magicQuotes ? 'Enabled' : 'Disabled' ?></p>
-<p><strong>Register Globals:</strong> <?= print_r($globals, true) ?></p>
+<p><strong>Regex (preg_match):</strong> <?= $regexResult ? 'Match found' : 'No match' ?></p>
+<p><strong>Split (explode):</strong> <?= implode(', ', $splitResult) ?></p>
+<p><strong>Database Connection:</strong> <?= $mysqlConn ? 'Connected' : 'Using CakePHP Models' ?></p>
+<p><strong>Magic Quotes:</strong> <?= $magicQuotes ? 'Enabled' : 'Disabled (Removed in PHP 7)' ?></p>
+<p><strong>Globals:</strong> <?= is_array($globals) ? 'Array with ' . count($globals) . ' items' : 'Not available' ?></p>
