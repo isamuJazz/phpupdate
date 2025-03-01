@@ -31,6 +31,7 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 	Router::connect('/sample', array('controller' => 'sample', 'action' => 'index'));
+	Router::connect('/google', array('controller' => 'google', 'action' => 'index'));
 
 
 /**

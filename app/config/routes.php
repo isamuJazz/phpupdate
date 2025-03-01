@@ -51,6 +51,9 @@ return static function (RouteBuilder $routes) {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Sample', 'action' => 'index']);
+        
+        // Google search page route
+        $builder->connect('/google', ['controller' => 'Google', 'action' => 'index']);
 
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
