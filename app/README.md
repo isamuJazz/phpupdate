@@ -8,6 +8,50 @@
 CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.
 Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
 
+## Docker Setup
+
+This project includes Docker configuration for easy development and testing. To start the application:
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+The application will be available at http://localhost:8080.
+
+## PHP 8 & CakePHP 4 Compatibility
+
+This project has been upgraded to work with PHP 8.1 and CakePHP 4.x. For details about the upgrade process and changes made, see the [MEMO.md](MEMO.md) file.
+
+## E2E Testing
+
+This project includes End-to-End (E2E) tests using Playwright. These tests verify that the application loads correctly and functions as expected.
+
+### Running E2E Tests
+
+To run the E2E tests:
+
+1. Make sure the application is running:
+   ```bash
+   docker-compose up -d
+   ```
+
+2. Run the tests:
+   ```bash
+   cd tests/e2e
+   ./run-tests.sh
+   ```
+
+Alternatively, you can run the tests manually:
+
+```bash
+cd tests/e2e
+npm install
+npx playwright install chromium
+npx playwright test
+```
+
+For more details about the E2E tests, see the [E2E Tests README](tests/e2e/README.md).
 
 ## Some Handy Links
 
