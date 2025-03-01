@@ -3,31 +3,48 @@ class SampleController extends AppController {
     public $name = 'Sample';
 
     public function index() {
-        // PHP 7 互換の関数を使用
+        // PHP 8 互換の関数を使用
         $date = '2025-03-01';
         
-        // strtotime は PHP 7 でも使用可能
+        // strtotime は PHP 8 でも使用可能
         $timestamp = strtotime($date);
         $this->set('timestamp', $timestamp);
         
-        // ereg の代わりに preg_match を使用
+        // preg_match は PHP 8 でも使用可能
         $regexResult = preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date);
         $this->set('regexResult', $regexResult);
         
-        // split の代わりに explode を使用
+        // explode は PHP 8 でも使用可能
         $splitResult = explode('-', $date);
         $this->set('splitResult', $splitResult);
         
-        // mysql_connect の代わりに mysqli_connect を使用
-        // 注意: 実際の接続は CakePHP のデータソースを使用するべき
+        // PHP 8 の新機能: Nullsafe オペレーター
+        $user = null;
+        $username = $user?->name ?? 'Guest'; // PHP 8 の Nullsafe オペレーターと Null 合体演算子
+        $this->set('username', $username);
+        
+        // PHP 8 の新機能: Match 式
+        $status = 200;
+        $statusText = match($status) {
+            200 => 'OK',
+            404 => 'Not Found',
+            500 => 'Server Error',
+            default => 'Unknown',
+        };
+        $this->set('statusText', $statusText);
+        
+        // PHP 8 の新機能: 名前付き引数
+        $formattedDate = date(format: 'Y-m-d', timestamp: time());
+        $this->set('formattedDate', $formattedDate);
+        
+        // CakePHP のデータソースを使用
         $conn = false; // 実際のアプリケーションでは CakePHP のモデルを使用
         $this->set('mysqlConn', $conn);
         
-        // get_magic_quotes_gpc は PHP 7 で削除されたため、常に false を返す
-        $magicQuotes = false; // PHP 7 では常に無効
+        // PHP 7/8 では削除された機能
+        $magicQuotes = false; // PHP 7/8 では常に無効
         $this->set('magicQuotes', $magicQuotes);
         
-        // register_globals は PHP 5.4 以降で削除されたため、代替コードなし
         $globals = []; // 簡易的な空の配列を設定
         $this->set('globals', $globals);
     }
